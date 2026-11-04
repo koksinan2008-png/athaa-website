@@ -91,24 +91,26 @@ footer{background:#052c23;color:#dce7df;text-align:center;padding:28px 15px;line
 </footer>
 
 <script type="module">
+
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
 
 const SUPABASE_URL = 'https://todgmbp1ju1edgxzxsuv.supabase.co';
-const SUPABASE_KEY = 'sb_publishable_af5KGOC2F1J2FJuQmjz36g_5R0WqRGq';
+
+const SUPABASE_KEY = 'sb_publishable_eupY58zRGRRL7W3Ktu5P0g_jC2hCIg7';
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
 const rangeList = document.getElementById('rangeList');
 const rangeStatus = document.getElementById('rangeStatus');
 
-async function loadRanges(){
-  const {data,error} = await supabase
+async function loadRanges() {
+  const { data, error } = await supabase
     .from('Ranges')
     .select('range_name');
 
-  if(error){
+  if (error) {
     rangeList.innerHTML = '';
-    rangeStatus.textContent = 'റേഞ്ച് വിവരങ്ങൾ ലഭ്യമല്ല. Database ക്രമീകരണം പരിശോധിക്കണം.';
+    rangeStatus.textContent = 'റേഞ്ച് വിവരങ്ങൾ ലഭ്യമല്ല.';
     console.error(error);
     return;
   }
@@ -126,7 +128,7 @@ async function loadRanges(){
     const heading = document.createElement('h3');
     heading.textContent = range.range_name;
 
-    card.append(symbol,heading);
+    card.append(symbol, heading);
     rangeList.appendChild(card);
   });
 
@@ -134,7 +136,8 @@ async function loadRanges(){
 }
 
 loadRanges();
-</script>
+
+     </script>
 </body>
 </html>
  
