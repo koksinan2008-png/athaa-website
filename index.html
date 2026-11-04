@@ -101,6 +101,11 @@ const SUPABASE_KEY = 'sb_publishable_eupY58zRGRRL7W3Ktu5P0g_jC2hCIg7';
 const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
 const rangeList = document.getElementById('rangeList');
+ കണ്ണപുരം 
+ മാട്ടൂൽ 
+ പുതിയങ്ങാടി 
+ മാടായി 
+ ചെറുകുന്ന് 
 const rangeStatus = document.getElementById('rangeStatus');
 
 async function loadRanges() {
@@ -110,7 +115,7 @@ async function loadRanges() {
 
   if (error) {
     rangeList.innerHTML = '';
-    rangeStatus.textContent = 'റേഞ്ച് വിവരങ്ങൾ ലഭ്യമല്ല.';
+    rangeStatus.textContent = ' rangeStatus.textContent = 'Error: ' + error.message;.';
     console.error(error);
     return;
   }
