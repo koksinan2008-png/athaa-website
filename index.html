@@ -23,6 +23,8 @@ padding:22px 8%;
 display:flex;
 justify-content:space-between;
 align-items:center;
+flex-wrap:wrap;
+gap:12px;
 }
 
 .logo{
@@ -137,10 +139,42 @@ line-height:1.8;
 color:#65756c;
 }
 
+/* RANGES */
+
+.ranges-section{
+background:#fffdf7;
+}
+
+.range-card{
+background:white;
+padding:24px 15px;
+border:1px solid #e8e1ce;
+border-radius:12px;
+box-shadow:0 5px 20px rgba(0,0,0,.04);
+}
+
+.range-card h3{
+color:#14513e;
+font-size:20px;
+}
+
+.range-symbol{
+font-size:26px;
+color:#bd984b;
+margin-bottom:10px;
+}
+
+#rangeStatus{
+margin-top:20px;
+color:#65756c;
+line-height:1.8;
+}
+
 .progress{
 background:#104b39;
 color:white;
 padding:55px 20px;
+text-align:center;
 }
 
 .progress h2{
@@ -175,6 +209,7 @@ font-size:14px;
 .hero h2{font-size:19px}
 .hero{padding:65px 20px 75px}
 section{padding:45px 6%}
+header{padding:18px 6%}
 }
 </style>
 </head>
@@ -229,6 +264,24 @@ SKSBV മാടായി മേഖല ഒരുക്കുന്ന സംഭ�
 </div>
 </section>
 
+<!-- RANGE DETAILS FROM SUPABASE -->
+
+<section class="ranges-section" id="ranges">
+<h2 class="section-title">ഞങ്ങളുടെ അഞ്ച് റേഞ്ചുകൾ</h2>
+<p class="intro">
+ATHAA ക്യാമ്പയിനിൽ പങ്കാളികളാകുന്ന റേഞ്ചുകൾ.
+</p>
+
+<div class="card-area" id="rangeList">
+<div class="card">
+<div class="range-symbol">✦</div>
+<p>റേഞ്ച് വിവരങ്ങൾ ലഭ്യമാക്കുന്നു...</p>
+</div>
+</div>
+
+<p id="rangeStatus">Database ബന്ധിപ്പിക്കുന്നു...</p>
+</section>
+
 <div class="progress">
 <h2>ATHAA CAMPAIGN</h2>
 <div class="amount">നന്മയുടെ കൂട്ടായ്മ</div>
@@ -251,13 +304,74 @@ ATHAA – ഒരുമിച്ച് മുന്നേറാം.
 <p>عَطَاء – Giving for a Better Tomorrow</p>
 <p>© 2026 SKSBV Madayi Zone. All Rights Reserved.</p>
 </footer>
+
 <script type="module">
-import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+import { createClient } from
+'https://esm.sh/@supabase/supabase-js@2';
+
+const SUPABASE_URL =
+'https://todgmbp1ju1edgxzxsuv.supabase.co';
+
+const SUPABASE_KEY =
+'sb_publishable_af5KGOC2F1J2FJuQmjz36g_5R0WqRGq';
 
 const supabase = createClient(
-  'https://todgmbp1ju1edgxzxsuv.supabase.co',
-  sb_publishable_af5KGOC2F1J2FJuQmjz36g_5R0WqRGq'
+SUPABASE_URL,
+SUPABASE_KEY
 );
+
+const rangeList = document.getElementById('rangeList');
+const rangeStatus = document.getElementById('rangeStatus');
+
+async function loadRanges(){
+
+const { data, error } = await supabase
+.from('Ranges')
+.select('range_name')
+.order('range_name');
+
+if(error){
+rangeList.innerHTML = '';
+rangeStatus.textContent =
+'റേഞ്ച് വിവരങ്ങൾ ഇപ്പോൾ ലഭ്യമല്ല. Database ക്രമീകരണം പരിശോധിക്കണം.';
+console.error(error);
+return;
+}
+
+if(!data || data.length === 0){
+rangeList.innerHTML = '';
+rangeStatus.textContent =
+'ഇപ്പോൾ റേഞ്ച് വിവരങ്ങൾ ലഭ്യമല്ല.';
+return;
+}
+
+rangeList.innerHTML = '';
+
+data.forEach((range) => {
+
+const card = document.createElement('div');
+card.className = 'range-card';
+
+const symbol = document.createElement('div');
+symbol.className = 'range-symbol';
+symbol.textContent = '✦';
+
+const heading = document.createElement('h3');
+heading.textContent = range.range_name;
+
+card.appendChild(symbol);
+card.appendChild(heading);
+rangeList.appendChild(card);
+
+});
+
+rangeStatus.textContent =
+'റേഞ്ച് വിവരങ്ങൾ വിജയകരമായി ലഭിച്ചു.';
+
+}
+
+loadRanges();
 </script>
+
 </body>
 </html>
