@@ -111,7 +111,7 @@ async function loadRanges() {
 
   if (error) {
     rangeList.innerHTML = '';
-    rangeStatus.textContent = ' rangeStatus.textContent = 'Error: ' + error.message;.';
+    rangeStatus.textContent = 'Error: ' + error.message;
     console.error(error);
     return;
   }
