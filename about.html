@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ml">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>മാടായി ഫണ്ട് | ATHAA</title>
+    <meta
+      name="description"
+      content="ATHAA donation and fund collection page for SKSBV Madayi Zone."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manjari:wght@400;700&family=Playfair+Display:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand-wrap">
+        <div class="logo">ATHAA <span>عَطَاء</span></div>
+      </div>
+      <nav class="nav" aria-label="Main Navigation">
+        <a href="index.html">ഹോം</a>
+        <a href="about.html">വിവരണം</a>
+        <a href="donation.html">സംഭാവന</a>
+        <a href="admin.html">അഡ്മിൻ</a>
+      </nav>
+    </header>
+
+    <main class="section-wrap">
+      <section class="container form-card donation-page">
+        <h1 class="page-title">സംഭാവന നടത്താം</h1>
+
+        <form id="donationForm" class="donation-form">
+          <div class="form-grid">
+            <div class="field">
+              <label for="name">പേര്</label>
+              <input id="name" name="name" type="text" placeholder="നിങ്ങളുടെ പേര്" required />
+            </div>
+
+            <div class="field">
+              <label for="madrasa">മദ്രസാ / സ്ഥാപനത്തിന്റെ പേര്</label>
+              <input id="madrasa" name="madrasa" type="text" placeholder="മദ്രസാ/സ്ഥാനം" required />
+            </div>
+
+            <div class="field">
+              <label for="rangeSelect">റേഞ്ച്</label>
+              <select id="rangeSelect" name="range" required>
+                <option value="">റേഞ്ച് തിരഞ്ഞെടുക്കൂ</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="amount">തുക</label>
+              <input id="amount" name="amount" type="number" min="1" placeholder="അമ്പത്/പത്ത്" required />
+            </div>
+
+            <div class="field field-full">
+              <label>തുക തിരഞ്ഞെടുക്കുക</label>
+              <div class="quick-amounts">
+                <button type="button" class="amount-btn active" data-value="10">₹10</button>
+                <button type="button" class="amount-btn" data-value="20">₹20</button>
+                <button type="button" class="amount-btn" data-value="50">₹50</button>
+                <button type="button" class="amount-btn" data-value="100">₹100</button>
+              </div>
+            </div>
+
+            <div class="field field-full">
+              <label for="upi">UPI ID</label>
+              <input id="upi" name="upi" type="text" value="7025144934@ptyes" required />
+            </div>
+
+            <div class="field field-full">
+              <label>QR കോഡ്</label>
+              <div class="qr-area">
+                <img id="qrCode" src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=upi://pay?pa=7025144934@ptyes&pn=SKSBV%20Madayi&am=10&cu=INR" alt="UPI QR code" />
+              </div>
+              <div class="upi-box" id="transactionPreview">7025144934@ptyes</div>
+              <div class="selected-amount" id="selectedAmountText">തുക: ₹10</div>
+            </div>
+          </div>
+
+          <div class="submit-row">
+            <button type="submit" class="btn btn-primary">സംഭാവന സമർപ്പിക്കുക</button>
+            <button type="button" class="btn btn-secondary" onclick="copyUPI()">UPI ID പകർത്തു</button>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <strong>ATHAA | SKSBV MADAYI ZONE</strong>
+      <p>عَطَاء – Giving for a Better Tomorrow</p>
+    </footer>
+
+    <script type="module" src="script.js"></script>
+  </body>
+</html>
+
+
